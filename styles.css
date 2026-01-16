@@ -1,0 +1,305 @@
+/* World Clock Plugin Styles */
+
+.world-clock-view {
+	padding: 1rem;
+}
+
+.world-clock-empty {
+	text-align: center;
+	padding: 2rem;
+	color: var(--text-muted);
+}
+
+.world-clock-empty-hint {
+	font-size: 0.9em;
+	margin-top: 0.5rem;
+}
+
+.world-clock-clocks-container {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	align-items: center;
+}
+
+.world-clock-item {
+	padding: 1rem;
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 8px;
+	background-color: var(--background-secondary);
+	/* Fixed square bounding box for clocks */
+	width: 180px;
+	height: 180px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+}
+
+/* Digital Clock Styles */
+.world-clock-digital {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	width: 100%;
+	height: 100%;
+}
+
+.world-clock-label {
+	font-size: 0.9em;
+	font-weight: 500;
+	color: var(--text-normal);
+	margin-bottom: 0.25rem;
+}
+
+.world-clock-time {
+	font-size: 2rem;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	color: var(--text-normal);
+	font-family: var(--font-monospace);
+}
+
+/* Analog Clock Styles */
+.world-clock-analog {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	width: 100%;
+	height: 100%;
+}
+
+.world-clock-svg-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+	flex: 1;
+}
+
+.world-clock-svg {
+	width: 140px;
+	height: 140px;
+	filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+	transition: all 0.3s ease;
+}
+
+/* Day/Night clock face colors with smooth transitions */
+.world-clock-svg #clock-face {
+	transition: fill 0.5s ease, stroke 0.5s ease;
+}
+
+/* Day time styling - lighter/brighter face */
+.world-clock-day #clock-face {
+	/* Light theme: very light, almost white */
+	/* Dark theme: lighter than background */
+}
+
+/* Night time styling - darker face */
+.world-clock-night #clock-face {
+	/* Light theme: dark gray/black */
+	/* Dark theme: very dark */
+}
+
+/* Light theme specific adjustments */
+.theme-light .world-clock-day #clock-face {
+	fill: #ffffff;
+	stroke: #e0e0e0;
+}
+
+.theme-light .world-clock-night #clock-face {
+	fill: #1e1e1e;
+	stroke: #3a3a3a;
+}
+
+/* Dark theme specific adjustments */
+.theme-dark .world-clock-day #clock-face {
+	fill: #2d2d2d;
+	stroke: #404040;
+}
+
+.theme-dark .world-clock-night #clock-face {
+	fill: #0f0f0f;
+	stroke: #1a1a1a;
+}
+
+/* Hour markers visibility - adapt to day/night */
+.world-clock-day circle[fill="var(--text-muted)"] {
+	opacity: 0.7;
+	transition: fill 0.5s ease, opacity 0.5s ease;
+}
+
+.world-clock-night circle[fill="var(--text-muted)"] {
+	opacity: 0.5;
+	transition: fill 0.5s ease, opacity 0.5s ease;
+}
+
+/* Light theme night mode - lighter markers for visibility on dark face */
+.theme-light .world-clock-night circle[fill="var(--text-muted)"] {
+	fill: #b0b0b0;
+	opacity: 0.9;
+}
+
+/* Light theme day mode - darker markers for visibility on light face */
+.theme-light .world-clock-day circle[fill="var(--text-muted)"] {
+	fill: #666666;
+	opacity: 0.8;
+}
+
+/* Dark theme day mode - ensure markers are visible */
+.theme-dark .world-clock-day circle[fill="var(--text-muted)"] {
+	opacity: 0.8;
+	fill: var(--text-muted);
+}
+
+/* Dark theme night mode - slightly lighter markers */
+.theme-dark .world-clock-night circle[fill="var(--text-muted)"] {
+	opacity: 0.6;
+	fill: var(--text-muted);
+}
+
+/* Hand visibility adjustments with transitions */
+.world-clock-day line[stroke="var(--text-normal)"] {
+	opacity: 0.95;
+	transition: stroke 0.5s ease, opacity 0.5s ease;
+}
+
+.world-clock-night line[stroke="var(--text-normal)"] {
+	opacity: 0.85;
+	transition: stroke 0.5s ease, opacity 0.5s ease;
+}
+
+/* Light theme night mode - lighter hands for visibility on dark face */
+.theme-light .world-clock-night line[stroke="var(--text-normal)"] {
+	stroke: #d0d0d0;
+	opacity: 0.95;
+}
+
+/* Light theme day mode - darker hands for visibility on light face */
+.theme-light .world-clock-day line[stroke="var(--text-normal)"] {
+	stroke: #333333;
+	opacity: 1;
+}
+
+/* Dark theme day mode - ensure hands are visible */
+.theme-dark .world-clock-day line[stroke="var(--text-normal)"] {
+	opacity: 1;
+	stroke: var(--text-normal);
+}
+
+/* Dark theme night mode - slightly lighter hands */
+.theme-dark .world-clock-night line[stroke="var(--text-normal)"] {
+	opacity: 0.9;
+	stroke: var(--text-normal);
+}
+
+/* Center dot visibility with transitions */
+.world-clock-day #clock-center {
+	opacity: 1;
+	transition: fill 0.5s ease, opacity 0.5s ease;
+}
+
+.world-clock-night #clock-center {
+	opacity: 0.9;
+	transition: fill 0.5s ease, opacity 0.5s ease;
+}
+
+/* Light theme night mode - lighter center dot for visibility */
+.theme-light .world-clock-night #clock-center {
+	fill: #d0d0d0;
+	opacity: 1;
+}
+
+/* Light theme day mode - darker center dot */
+.theme-light .world-clock-day #clock-center {
+	fill: #333333;
+	opacity: 1;
+}
+
+/* Dark theme - use theme colors */
+.theme-dark .world-clock-day #clock-center {
+	fill: var(--text-normal);
+	opacity: 1;
+}
+
+.theme-dark .world-clock-night #clock-center {
+	fill: var(--text-normal);
+	opacity: 0.9;
+}
+
+/* Settings Styles */
+.world-clock-add-container {
+	margin-bottom: 1rem;
+}
+
+.world-clock-setting-item {
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 8px;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	background-color: var(--background-secondary);
+}
+
+.world-clock-setting-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.world-clock-setting-header h4 {
+	margin: 0;
+	font-size: 1.1em;
+	flex: 1;
+}
+
+.world-clock-reorder-buttons {
+	display: flex;
+	gap: 0.25rem;
+	margin-right: 0.5rem;
+}
+
+.world-clock-reorder-btn {
+	background: var(--background-modifier-form-field);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 4px;
+	padding: 0.25rem 0.5rem;
+	cursor: pointer;
+	color: var(--text-normal);
+	font-size: 0.9em;
+	transition: background 0.2s ease;
+	min-width: 28px;
+	height: 28px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.world-clock-reorder-btn:hover:not(:disabled) {
+	background: var(--background-modifier-form-field-highlighted);
+	border-color: var(--background-modifier-border-hover);
+}
+
+.world-clock-reorder-btn:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+	.world-clock-time {
+		font-size: 1.5rem;
+	}
+
+	.world-clock-svg {
+		width: 100px;
+		height: 100px;
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"id": "world-clock",
+	"name": "World Clock",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Display multiple world clocks in a dockable view. Supports digital and analog clocks with full IANA timezone support.",
+	"author": "Obsidian",
+	"authorUrl": "https://obsidian.md",
+	"fundingUrl": "https://obsidian.md/pricing",
+	"isDesktopOnly": false
+}

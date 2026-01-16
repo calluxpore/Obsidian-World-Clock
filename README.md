@@ -1,90 +1,145 @@
-# Obsidian Sample Plugin
+# World Clock
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+Display multiple world clocks in a dockable view. Supports digital and analog clocks with full IANA timezone support.
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+## Features
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open modal (simple)" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+- **Multiple Clocks**: Add and manage multiple world clocks simultaneously
+- **Digital & Analog**: Choose between digital or analog clock displays
+- **Full Timezone Support**: Uses IANA timezone identifiers for accurate time conversion
+- **Dockable View**: Access your clocks from a dedicated side panel
+- **Customizable**: Configure labels, 12/24-hour format, and seconds display
+- **Responsive Layout**: Clocks automatically wrap and arrange based on available space
 
-## First time developing plugins?
+## Installation via BRAT
 
-Quick starting guide for new plugin devs:
+BRAT (Beta Reviewers Auto-update Tool) allows you to install and automatically update beta plugins directly from GitHub repositories.
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+### Prerequisites
 
-## Releasing new releases
+1. Install the **BRAT** plugin first:
+   - Go to **Settings → Community plugins**
+   - Disable Safe Mode if enabled
+   - Click **Browse** and search for "BRAT"
+   - Install and enable the BRAT plugin
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+### Installation Steps
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+1. Open **Settings → Community plugins**
+2. Scroll down to find **BRAT** in the installed plugins list
+3. Click on **BRAT** to open its settings
+4. Click **Add Beta Plugin**
+5. Enter the repository URL:
+   ```
+   https://github.com/YOUR_USERNAME/Obsidian-World-Clock
+   ```
+   *(Replace `YOUR_USERNAME` with the actual GitHub username or organization)*
+6. Click **Add Plugin**
+7. Wait for BRAT to fetch the plugin
+8. Go back to **Settings → Community plugins**
+9. Find **World Clock** in the list and toggle it **ON**
 
-## Adding your plugin to the community plugin list
+### Updating
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+BRAT will automatically check for updates. To manually update:
+1. Go to **Settings → Community plugins**
+2. Open **BRAT** settings
+3. Click **Check for updates** or wait for automatic updates
 
-## How to use
+## Usage
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+### Opening the World Clock View
 
-## Manually installing the plugin
+1. Use the command palette (`Ctrl/Cmd + P`)
+2. Type "Open World Clock" and select it
+3. The World Clock view will open in a side panel
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+Alternatively, you can:
+- Use the ribbon icon (if enabled)
+- Right-click on the side panel and select "World Clock"
 
-## Improve code quality with eslint
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- This project already has eslint preconfigured, you can invoke a check by running`npm run lint`
-- Together with a custom eslint [plugin](https://github.com/obsidianmd/eslint-plugin) for Obsidan specific code guidelines.
-- A GitHub action is preconfigured to automatically lint every commit on all branches.
+### Adding Clocks
 
-## Funding URL
+1. Go to **Settings → World Clock**
+2. Click **Add Clock**
+3. Configure your clock:
+   - **Label**: Optional friendly name (e.g., "New York")
+   - **Timezone**: Select from the dropdown or enter an IANA timezone (e.g., "America/New_York")
+   - **Type**: Choose Digital or Analog
+   - **24-hour format**: Toggle for digital clocks
+   - **Show seconds**: Toggle to display seconds
+4. Click **Save**
 
-You can include funding URLs where people who use your plugin can financially support it.
+### Managing Clocks
 
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
+- **Reorder**: Use the ↑ and ↓ buttons in settings to change the display order
+- **Remove**: Click the **Remove** button to delete a clock
+- **Edit**: Modify any setting and save to update
 
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
+## Development
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm
+
+### Setup
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/Obsidian-World-Clock.git
+   cd Obsidian-World-Clock
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Build the plugin:
+   ```bash
+   npm run build
+   ```
+
+4. For development with watch mode:
+   ```bash
+   npm run dev
+   ```
+
+### Manual Installation (Development)
+
+1. Build the plugin: `npm run build`
+2. Copy `main.js`, `manifest.json`, and `styles.css` to:
+   ```
+   <Vault>/.obsidian/plugins/world-clock/
+   ```
+3. Reload Obsidian
+4. Enable the plugin in **Settings → Community plugins**
+
+## Project Structure
+
+```
+src/
+  main.ts              # Plugin entry point
+  settings.ts          # Settings tab and configuration
+  types.ts             # TypeScript interfaces
+  view/
+    WorldClockView.ts  # Main dockable view
+  components/
+    DigitalClock.ts    # Digital clock component
+    AnalogClock.ts     # Analog clock component
+  utils/
+    timezones.ts       # Timezone utilities
 ```
 
-If you have multiple URLs, you can also do:
+## Contributing
 
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
-```
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-## API Documentation
+## License
 
-See https://docs.obsidian.md
+This project is licensed under the MIT License.
+
+## Support
+
+For issues, feature requests, or questions, please open an issue on the [GitHub repository](https://github.com/YOUR_USERNAME/Obsidian-World-Clock).
